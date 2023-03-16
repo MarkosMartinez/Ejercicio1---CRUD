@@ -8,6 +8,7 @@
 <meta charset="ISO-8859-1">
 <title>Ejercicio 1 - CRUD JSP</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<link rel="stylesheet" href="Estilos/style.css">
 </head>
 <body>
 
@@ -15,7 +16,14 @@
 ArrayList<ModeloUsuario> usuarios = (ArrayList<ModeloUsuario>) request.getAttribute("usuarios");
 %>
 
-
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <h2>Ejercicio 1 - Crud JSP</h2>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class='btn btn-success' id="btncrearUser" href='/Ejercicio1Crud/CrearUsuario'><b>Crear usuario</b></a>
+    </div>
+  </div>
+</nav>
 
 <table class="table">
   <thead>
@@ -24,7 +32,6 @@ ArrayList<ModeloUsuario> usuarios = (ArrayList<ModeloUsuario>) request.getAttrib
       <th scope="col">Nombre</th>
       <th scope="col">Modificar</th>
       <th scope="col">Eliminar</th>
-      <th><a class='btn btn-success' href='/Ejercicio1Crud/CrearUsuario'><b>+</b></a></th>
     </tr>
   </thead>
     <%
