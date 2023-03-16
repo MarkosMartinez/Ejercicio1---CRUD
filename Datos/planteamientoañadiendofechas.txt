@@ -1,0 +1,7 @@
+Insertando la fecha:
+
+- Modificar el ModeloUsuario añadiendo la fecha con sus getters y setters.
+- Modificar los Select, insert y update teniendo en cuenta la fecha
+- Modificar el "Visor de usuarios" para poder mostrar la fecha de los usuarios (y pensar en que hacer con los usuarios sin fecha)
+- Modificar el "Modificar usuario" para que pueda cambiar la fecha
+- Modificar el "Insertar usuarios" para que pueda insertar la fecha en los nuevos usuarios.
