@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 
 import clases.Conexion;
 
@@ -11,10 +12,16 @@ public class ModeloUsuario {
 
 	private int id;
 	private String nombre;
+	private Date fechaDeNacimiento;
 	
 	
 	
-	
+	public Date getFechaNacimiento() {
+		return fechaDeNacimiento;
+	}
+	public void setFechaNacimineto(Date fecha) {
+		this.fechaDeNacimiento = fecha;
+	}
 	public int getId() {
 		return id;
 	}
@@ -33,12 +40,13 @@ public class ModeloUsuario {
 		Conexion conector = new Conexion();
 		conector.conectar();
 	
-		PreparedStatement pSt = conector.getCon().prepareStatement("SELECT id, nombre_apellido FROM usuarios");
+		PreparedStatement pSt = conector.getCon().prepareStatement("SELECT id, nombre_apellido, fecha_nacimiento FROM usuarios");
 		ResultSet resultado = pSt.executeQuery();
 		while(resultado.next()) {
 			ModeloUsuario usuario = new ModeloUsuario();
 			usuario.setId(resultado.getInt("id"));
 			usuario.setNombre(resultado.getString("nombre_apellido"));
+			usuario.setFechaNacimineto(resultado.getDate("fecha_nacimiento"));
 			usuarios.add(usuario);
 		}
 		pSt.close();
@@ -58,6 +66,7 @@ public class ModeloUsuario {
 		if(resultado.next()) {
 		usuario.setId(resultado.getInt("id"));
 		usuario.setNombre(resultado.getString("nombre_apellido"));
+		usuario.setFechaNacimineto(resultado.getDate("fecha_nacimiento"));
 		}
 		gettear.close();
 		conector.cerrar();
@@ -75,12 +84,13 @@ public class ModeloUsuario {
 		
 	}
 	
-	public void modUsuarios(int id, String nombre) throws SQLException {
+	public void modUsuarios(int id, String nombre, Date fecha) throws SQLException {
 		Conexion conector = new Conexion();
 		conector.conectar();
-		PreparedStatement pstModificar = conector.getCon().prepareStatement("UPDATE usuarios SET nombre_apellido = ? WHERE id = ?;");
+		PreparedStatement pstModificar = conector.getCon().prepareStatement("UPDATE usuarios SET nombre_apellido = ?, fecha_nacimiento = ? WHERE id = ?;");
 		pstModificar.setString(1, nombre);
-		pstModificar.setInt(2, id);
+		pstModificar.setDate(2, new java.sql.Date(fecha.getTime()));
+		pstModificar.setInt(3, id);
 		pstModificar.execute();
 		conector.cerrar();
 		

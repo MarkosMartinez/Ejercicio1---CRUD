@@ -1,3 +1,4 @@
+<%@ page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -12,6 +13,7 @@
 <%
 int id = (Integer) request.getAttribute("id");
 String nombre = (String) request.getAttribute("nombre");
+Date fecha = (Date) request.getAttribute("fecha");
 %>
 
 <form action="ModificarUsuario" method="POST">   
@@ -23,6 +25,15 @@ String nombre = (String) request.getAttribute("nombre");
   <div class="form-group">
     <label for="nombre">Nombre:</label>
     <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Error" value="<% out.print(nombre);%>">
+  </div>
+  <div class="form-group">
+    <label for="nombre">Fecha de nacimiento:</label>
+    <%if(fecha == null){
+    %>
+    <input type="date" name="fecha" class="form-control" id="fecha" placeholder="Error" value="">
+    <%}else{ %>
+    <input type="date" name="fecha" class="form-control" id="fecha" placeholder="Error" value="<%out.print(fecha);%>">
+    <%} %>
   </div>
   <button type="submit" class="btn btn-primary">Modificar</button>
 </form>

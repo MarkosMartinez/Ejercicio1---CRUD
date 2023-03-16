@@ -30,6 +30,7 @@ ArrayList<ModeloUsuario> usuarios = (ArrayList<ModeloUsuario>) request.getAttrib
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Nombre</th>
+      <th scope="col">Fecha de Nacimiento</th>
       <th scope="col">Modificar</th>
       <th scope="col">Eliminar</th>
     </tr>
@@ -39,6 +40,11 @@ ArrayList<ModeloUsuario> usuarios = (ArrayList<ModeloUsuario>) request.getAttrib
     	out.print("<tr>");
     	out.print("<td>" + usuarios.get(i).getId() + "</td>");
     	out.print("<td>" + usuarios.get(i).getNombre() + "</td>");
+    	if(usuarios.get(i).getFechaNacimiento() == null){
+    	out.print("<td>Fecha Indefinida</td>");
+    	}else{
+    	out.print("<td>" + usuarios.get(i).getFechaNacimiento() + "</td>");
+    	}
     	out.print("<td><a class='btn btn-primary' href='/Ejercicio1Crud/ModificarUsuario?id=" + usuarios.get(i).getId() + "'>Modificar</a></td>");
     	out.print("<td><a class='btn btn-danger' href='/Ejercicio1Crud/EliminarUsuario?id=" + usuarios.get(i).getId() + "'>Eliminar</a></td>");
     	out.print("</tr>");
