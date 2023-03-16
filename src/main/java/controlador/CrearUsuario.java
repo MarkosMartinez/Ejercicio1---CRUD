@@ -2,6 +2,9 @@ package controlador;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,9 +43,17 @@ public class CrearUsuario extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String dni = request.getParameter("dni");
 		String codigo = request.getParameter("codigo");
+		String fechaSinFormato = request.getParameter("fecha_nacimiento");
+		Date fecha = null;
+		try {
+			fecha = new SimpleDateFormat("yyyy-MM-dd").parse(fechaSinFormato);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ModeloUsuario usuario = new ModeloUsuario();
 		try {
-			usuario.insertUsuarios(nombre, dni, codigo);
+			usuario.insertUsuarios(nombre, dni, codigo, fecha);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

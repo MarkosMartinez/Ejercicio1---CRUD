@@ -58,18 +58,15 @@ public class ModificarUsuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
-		java.sql.Date fecha = null;
+		String fechaSinFormato = request.getParameter("fecha_nacimiento");
+		Date fecha = null;
 		try {
-			/*fecha = new SimpleDateFormat("dd/MM/yyyy").parse(request.getParameter("fecha_nacimiento"));*/
-			
-			String fechaFormato = request.getParameter(request.getParameter("fecha_nacimiento"));
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			//surround below line with try catch block as below code throws checked exception
-			fecha = new java.sql.Date(sdf.parse(fechaFormato).getTime());
-		} catch (ParseException e1) {
+			fecha = new SimpleDateFormat("yyyy-MM-dd").parse(fechaSinFormato);
+		} catch (ParseException e) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			e.printStackTrace();
 		}
+
 		ModeloUsuario usuario = new ModeloUsuario();
 		try {
 			usuario.modUsuarios(id, nombre, fecha);

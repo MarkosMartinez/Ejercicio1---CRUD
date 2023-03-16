@@ -89,19 +89,20 @@ public class ModeloUsuario {
 		conector.conectar();
 		PreparedStatement pstModificar = conector.getCon().prepareStatement("UPDATE usuarios SET nombre_apellido = ?, fecha_nacimiento = ? WHERE id = ?;");
 		pstModificar.setString(1, nombre);
-		pstModificar.setDate(2, new java.sql.Date(fecha.getTime()));
+		pstModificar.setDate(2, new java.sql.Date( fecha.getTime()));
 		pstModificar.setInt(3, id);
 		pstModificar.execute();
 		conector.cerrar();
 		
 	}
-	public void insertUsuarios(String Nuevonombre, String dni, String codigo) throws SQLException {
+	public void insertUsuarios(String Nuevonombre, String dni, String codigo, Date fecha) throws SQLException {
 		Conexion conector = new Conexion();
 		conector.conectar();
-		PreparedStatement insertar = conector.getCon().prepareStatement("INSERT INTO usuarios (nombre_apellido, dni, codigo) VALUES (?, ?, ?);");
+		PreparedStatement insertar = conector.getCon().prepareStatement("INSERT INTO usuarios (nombre_apellido, dni, codigo, fecha_nacimiento) VALUES (?, ?, ?, ?);");
 		insertar.setString(1, Nuevonombre);
 		insertar.setString(2, dni);
 		insertar.setString(3, codigo);
+		insertar.setDate(4, new java.sql.Date( fecha.getTime()));
 		insertar.execute();
 		conector.cerrar();	
 		

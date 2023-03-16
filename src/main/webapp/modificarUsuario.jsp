@@ -28,12 +28,7 @@ Date fecha = (Date) request.getAttribute("fecha");
   </div>
   <div class="form-group">
     <label for="nombre">Fecha de nacimiento:</label>
-    <%if(fecha == null){
-    %>
-    <input type="date" name="fecha" class="form-control" id="fecha" placeholder="Error" value="">
-    <%}else{ %>
-    <input type="date" name="fecha" class="form-control" id="fecha" placeholder="Error" value="<%out.print(fecha);%>">
-    <%} %>
+     <input type="date" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" placeholder="Error" value="<%out.print(fecha);%>">
   </div>
   <button type="submit" class="btn btn-primary">Modificar</button>
 </form>
