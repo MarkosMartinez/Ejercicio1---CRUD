@@ -9,6 +9,10 @@
 </head>
 <body>
 
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
 <form class="form-inline" action="CrearUsuario" method="POST">   
   <div class="form-group mx-sm-3 mb-2">
     <label for="nombre"  class="sr-only">Nombre y Apellido: </label>
@@ -28,6 +32,9 @@
   </div>
   <button type="submit" class="btn btn-primary mb-2">Crear usuario</button>
 </form>
+  </div>
+  </div>
+</div>
 
 </body>
 </html>

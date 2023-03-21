@@ -16,6 +16,9 @@ String nombre = (String) request.getAttribute("nombre");
 Date fecha = (Date) request.getAttribute("fecha");
 %>
 
+<div class="container">
+  <div class="row">
+    <div class="col">
 <form action="ModificarUsuario" method="POST">   
   <div class="form-group">
   <input type="hidden" name="id" value="<% out.print(id);%>"/>
@@ -32,6 +35,9 @@ Date fecha = (Date) request.getAttribute("fecha");
   </div>
   <button type="submit" class="btn btn-primary">Modificar</button>
 </form>
+  </div>
+  </div>
+</div>
 
 </body>
 </html>
