@@ -14,8 +14,16 @@
 
 <%
 ArrayList<ModeloUsuario> usuarios = (ArrayList<ModeloUsuario>) request.getAttribute("usuarios");
-%>
+String aviso = (String) request.getAttribute("aviso");
 
+if(aviso.equals("usucreado")){
+	out.print("<div class='alert alert-success' role='alert'>Usuario creado con exito!</div>");
+}else if(aviso.equals("usueliminado")){
+	out.print("<div class='alert alert-danger' role='alert'>Usuario eliminado!</div>");
+}else if(aviso.equals("usumodificado")){
+	out.print("<div class='alert alert-primary' role='alert'>Usuario Modificado!</div>");
+}
+%>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <h2>Ejercicio 1 - Crud JSP</h2>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">

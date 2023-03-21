@@ -32,6 +32,11 @@ public class VerUsuarios extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<ModeloUsuario> usuarios = new ArrayList<>();
+		String aviso = request.getParameter("aviso");
+		if(aviso == null) {
+			aviso = "ninguno";
+		}
+			
 		ModeloUsuario usuario = new ModeloUsuario();
 			try {
 				usuarios = usuario.getUsuarios();
@@ -40,7 +45,7 @@ public class VerUsuarios extends HttpServlet {
 				e.printStackTrace();
 			}
 
-
+		request.setAttribute("aviso", aviso);
 		request.setAttribute("usuarios", usuarios);
 		request.getRequestDispatcher("verUsuarios.jsp").forward(request, response);
 

@@ -38,7 +38,7 @@ public class EliminarUsuario extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.sendRedirect(request.getContextPath() + "/VerUsuarios");
+		response.sendRedirect(request.getContextPath() + "/VerUsuarios?aviso=usueliminado");
 	}
 
 	/**
