@@ -26,7 +26,6 @@ public class ModificarUsuario extends HttpServlet {
      */
     public ModificarUsuario() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -40,7 +39,6 @@ public class ModificarUsuario extends HttpServlet {
 		try {
 			usuario = usuario.getUsuario(id);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		String nombre = usuario.getNombre();
@@ -66,7 +64,6 @@ public class ModificarUsuario extends HttpServlet {
 		try {
 			fecha = new SimpleDateFormat("yyyy-MM-dd").parse(fechaSinFormato);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -74,7 +71,6 @@ public class ModificarUsuario extends HttpServlet {
 		try {
 			usuario.modUsuarios(id, nombre, fecha, password);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		response.sendRedirect(request.getContextPath() + "/VerUsuarios?aviso=usumodificado");

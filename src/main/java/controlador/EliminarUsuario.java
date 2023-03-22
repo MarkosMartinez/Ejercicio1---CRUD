@@ -23,7 +23,6 @@ public class EliminarUsuario extends HttpServlet {
      */
     public EliminarUsuario() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -35,7 +34,6 @@ public class EliminarUsuario extends HttpServlet {
 		try {
 			usuario.deleteUsuario(id);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		response.sendRedirect(request.getContextPath() + "/VerUsuarios?aviso=usueliminado");
@@ -45,7 +43,6 @@ public class EliminarUsuario extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

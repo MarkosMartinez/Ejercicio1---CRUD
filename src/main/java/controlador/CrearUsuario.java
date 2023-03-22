@@ -26,7 +26,6 @@ public class CrearUsuario extends HttpServlet {
      */
     public CrearUsuario() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -49,14 +48,12 @@ public class CrearUsuario extends HttpServlet {
 		try {
 			fecha = new SimpleDateFormat("yyyy-MM-dd").parse(fechaSinFormato);
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		ModeloUsuario usuario = new ModeloUsuario();
 		try {
 			usuario.insertUsuarios(nombre, dni, codigo, fecha, password);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		response.sendRedirect(request.getContextPath() + "/VerUsuarios?aviso=usucreado");
