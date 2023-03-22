@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-03-2023 a las 13:55:26
+-- Tiempo de generación: 22-03-2023 a las 13:54:33
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -20,68 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `polideportivo`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `actividades`
---
-
-CREATE TABLE `actividades` (
-  `id` int(11) NOT NULL,
-  `nombre` varchar(64) NOT NULL,
-  `fecha_inicio` date NOT NULL,
-  `dias_semana` varchar(64) NOT NULL,
-  `horas` int(11) NOT NULL,
-  `max_participantes` int(11) NOT NULL,
-  `precio` double NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `actividades`
---
-
-INSERT INTO `actividades` (`id`, `nombre`, `fecha_inicio`, `dias_semana`, `horas`, `max_participantes`, `precio`) VALUES
-(2, 'zumba', '2020-01-08', 'jueves, sabado', 16, 20, 45),
-(3, 'zumba', '2020-03-02', 'lunes, miercoles', 16, 20, 45),
-(4, 'spining', '2020-02-03', 'miercoles', 12, 12, 30),
-(5, 'spining', '2020-02-03', 'lunes, miercoles', 8, 12, 24),
-(6, 'cros fit', '2020-03-08', 'miercoles, viernes', 8, 20, 24);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `inscripciones`
---
-
-CREATE TABLE `inscripciones` (
-  `id` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `id_actividad` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `inscripciones`
---
-
-INSERT INTO `inscripciones` (`id`, `id_usuario`, `id_actividad`) VALUES
-(25, 4, 6),
-(26, 5, 6),
-(31, 6, 5),
-(1, 6, 6),
-(32, 7, 5),
-(27, 7, 6),
-(33, 8, 5),
-(28, 8, 6),
-(34, 9, 5),
-(2, 9, 6),
-(35, 10, 5),
-(29, 10, 6),
-(36, 11, 5),
-(30, 11, 6),
-(37, 12, 5),
-(38, 13, 5),
-(39, 14, 5);
 
 -- --------------------------------------------------------
 
@@ -125,21 +63,6 @@ INSERT INTO `usuarios` (`id`, `nombre_apellido`, `dni`, `codigo`, `fecha_nacimie
 --
 
 --
--- Indices de la tabla `actividades`
---
-ALTER TABLE `actividades`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `inscripciones`
---
-ALTER TABLE `inscripciones`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `id_usuario_2` (`id_usuario`,`id_actividad`),
-  ADD KEY `id_usuario` (`id_usuario`),
-  ADD KEY `id_actividad` (`id_actividad`);
-
---
 -- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -152,33 +75,10 @@ ALTER TABLE `usuarios`
 --
 
 --
--- AUTO_INCREMENT de la tabla `actividades`
---
-ALTER TABLE `actividades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT de la tabla `inscripciones`
---
-ALTER TABLE `inscripciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-
---
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `inscripciones`
---
-ALTER TABLE `inscripciones`
-  ADD CONSTRAINT `inscripciones_ibfk_1` FOREIGN KEY (`id_actividad`) REFERENCES `actividades` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `inscripciones_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
