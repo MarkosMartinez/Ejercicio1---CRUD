@@ -45,10 +45,12 @@ public class ModificarUsuario extends HttpServlet {
 		}
 		String nombre = usuario.getNombre();
 		Date fecha = usuario.getFechaNacimiento();
+		String password = usuario.getPassword();
 		
 		request.setAttribute("id", id);
 		request.setAttribute("nombre", nombre);
 		request.setAttribute("fecha", fecha);
+		request.setAttribute("password", password);
 		request.getRequestDispatcher("modificarUsuario.jsp").forward(request, response);
 	}
 
@@ -59,6 +61,7 @@ public class ModificarUsuario extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
 		String fechaSinFormato = request.getParameter("fecha_nacimiento");
+		String password = request.getParameter("password");
 		Date fecha = null;
 		try {
 			fecha = new SimpleDateFormat("yyyy-MM-dd").parse(fechaSinFormato);
@@ -69,7 +72,7 @@ public class ModificarUsuario extends HttpServlet {
 
 		ModeloUsuario usuario = new ModeloUsuario();
 		try {
-			usuario.modUsuarios(id, nombre, fecha);
+			usuario.modUsuarios(id, nombre, fecha, password);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

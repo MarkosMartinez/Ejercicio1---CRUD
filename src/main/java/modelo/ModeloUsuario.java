@@ -13,9 +13,21 @@ public class ModeloUsuario {
 	private int id;
 	private String nombre;
 	private Date fechaDeNacimiento;
+	private String password;
 	
 	
-	
+	public Date getFechaDeNacimiento() {
+		return fechaDeNacimiento;
+	}
+	public void setFechaDeNacimiento(Date fechaDeNacimiento) {
+		this.fechaDeNacimiento = fechaDeNacimiento;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public Date getFechaNacimiento() {
 		return fechaDeNacimiento;
 	}
@@ -40,13 +52,14 @@ public class ModeloUsuario {
 		Conexion conector = new Conexion();
 		conector.conectar();
 	
-		PreparedStatement pSt = conector.getCon().prepareStatement("SELECT id, nombre_apellido, fecha_nacimiento FROM usuarios");
+		PreparedStatement pSt = conector.getCon().prepareStatement("SELECT id, nombre_apellido, fecha_nacimiento, password FROM usuarios");
 		ResultSet resultado = pSt.executeQuery();
 		while(resultado.next()) {
 			ModeloUsuario usuario = new ModeloUsuario();
 			usuario.setId(resultado.getInt("id"));
 			usuario.setNombre(resultado.getString("nombre_apellido"));
 			usuario.setFechaNacimineto(resultado.getDate("fecha_nacimiento"));
+			usuario.setPassword(resultado.getString("password"));
 			usuarios.add(usuario);
 		}
 		pSt.close();
@@ -67,6 +80,7 @@ public class ModeloUsuario {
 		usuario.setId(resultado.getInt("id"));
 		usuario.setNombre(resultado.getString("nombre_apellido"));
 		usuario.setFechaNacimineto(resultado.getDate("fecha_nacimiento"));
+		usuario.setPassword(resultado.getString("password"));
 		}
 		gettear.close();
 		conector.cerrar();
@@ -84,25 +98,27 @@ public class ModeloUsuario {
 		
 	}
 	
-	public void modUsuarios(int id, String nombre, Date fecha) throws SQLException {
+	public void modUsuarios(int id, String nombre, Date fecha, String password) throws SQLException {
 		Conexion conector = new Conexion();
 		conector.conectar();
-		PreparedStatement pstModificar = conector.getCon().prepareStatement("UPDATE usuarios SET nombre_apellido = ?, fecha_nacimiento = ? WHERE id = ?;");
+		PreparedStatement pstModificar = conector.getCon().prepareStatement("UPDATE usuarios SET nombre_apellido = ?, fecha_nacimiento = ?, password = ? WHERE id = ?;");
 		pstModificar.setString(1, nombre);
 		pstModificar.setDate(2, new java.sql.Date( fecha.getTime()));
-		pstModificar.setInt(3, id);
+		pstModificar.setString(3, password);
+		pstModificar.setInt(4, id);
 		pstModificar.execute();
 		conector.cerrar();
 		
 	}
-	public void insertUsuarios(String Nuevonombre, String dni, String codigo, Date fecha) throws SQLException {
+	public void insertUsuarios(String Nuevonombre, String dni, String codigo, Date fecha, String password) throws SQLException {
 		Conexion conector = new Conexion();
 		conector.conectar();
-		PreparedStatement insertar = conector.getCon().prepareStatement("INSERT INTO usuarios (nombre_apellido, dni, codigo, fecha_nacimiento) VALUES (?, ?, ?, ?);");
+		PreparedStatement insertar = conector.getCon().prepareStatement("INSERT INTO usuarios (nombre_apellido, dni, codigo, fecha_nacimiento, password) VALUES (?, ?, ?, ?, ?);");
 		insertar.setString(1, Nuevonombre);
 		insertar.setString(2, dni);
 		insertar.setString(3, codigo);
 		insertar.setDate(4, new java.sql.Date( fecha.getTime()));
+		insertar.setString(5, password);
 		insertar.execute();
 		conector.cerrar();	
 		

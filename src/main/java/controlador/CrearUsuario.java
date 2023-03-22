@@ -43,6 +43,7 @@ public class CrearUsuario extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String dni = request.getParameter("dni");
 		String codigo = request.getParameter("codigo");
+		String password = request.getParameter("password");
 		String fechaSinFormato = request.getParameter("fecha_nacimiento");
 		Date fecha = null;
 		try {
@@ -53,7 +54,7 @@ public class CrearUsuario extends HttpServlet {
 		}
 		ModeloUsuario usuario = new ModeloUsuario();
 		try {
-			usuario.insertUsuarios(nombre, dni, codigo, fecha);
+			usuario.insertUsuarios(nombre, dni, codigo, fecha, password);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

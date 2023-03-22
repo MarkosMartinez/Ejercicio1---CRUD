@@ -30,6 +30,10 @@
     <label for="fecha_nacimiento"  class="sr-only">Fecha de nacimiento: </label>
     <input type="date" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento">
   </div>
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="fecha_nacimiento"  class="sr-only">Contraseña: </label>
+    <input type="password" name="password" class="form-control" id="password" placeholder="Nueva Contraseña">
+  </div>
   <button type="submit" class="btn btn-primary mb-2">Crear usuario</button>
 </form>
   </div>

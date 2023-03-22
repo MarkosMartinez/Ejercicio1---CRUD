@@ -33,6 +33,10 @@ Date fecha = (Date) request.getAttribute("fecha");
     <label for="nombre">Fecha de nacimiento:</label>
      <input type="date" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" placeholder="Error" value="<%out.print(fecha);%>">
   </div>
+  <div class="form-group">
+    <label for="password">Contraseña:</label>
+     <input type="password" name="password" class="form-control" id="password" placeholder="Nueva Contraseña">
+  </div>
   <button type="submit" class="btn btn-primary">Modificar</button>
 </form>
   </div>
