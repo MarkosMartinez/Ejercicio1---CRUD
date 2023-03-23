@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import clases.Conexion;
-
 public class ModeloUsuario extends Conexion{
 	
 	public ArrayList<Usuario> getUsuarios() throws SQLException {
@@ -23,6 +22,7 @@ public class ModeloUsuario extends Conexion{
 			usuario.setNombre(resultado.getString("nombre_apellido"));
 			usuario.setFechaNacimineto(resultado.getDate("fecha_nacimiento"));
 			usuario.setPassword(resultado.getString("password"));
+			
 			usuarios.add(usuario);
 		}
 		pSt.close();

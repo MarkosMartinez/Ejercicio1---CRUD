@@ -40,10 +40,10 @@ if(aviso.equals("usucreado")){
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Nombre</th>
+      <th scope="col">Contraseña</th>
       <th scope="col">Fecha de Nacimiento</th>
       <th scope="col">Modificar</th>
       <th scope="col">Eliminar</th>
-      <th scope="col">Contraseña</th>
     </tr>
   </thead>
     <%
@@ -51,21 +51,21 @@ if(aviso.equals("usucreado")){
     	out.print("<tr>");
     	out.print("<td>" + usuarios.get(i).getId() + "</td>");
     	out.print("<td>" + usuarios.get(i).getNombre() + "</td>");
-    	if(usuarios.get(i).getFechaNacimiento() == null){
-    	out.print("<td>Fecha Indefinida</td>");
-    	}else{
-    	out.print("<td>" + usuarios.get(i).getFechaNacimiento() + "</td>");
-    	}
-    	out.print("<td><a class='btn btn-primary' href='/Ejercicio1Crud/ModificarUsuario?id=" + usuarios.get(i).getId() + "'>Modificar</a></td>");
-    	out.print("<td><a class='btn btn-danger' href='/Ejercicio1Crud/EliminarUsuario?id=" + usuarios.get(i).getId() + "'>Eliminar</a></td>");
     	String cantcontrasenia = "";
-    	if(usuarios.get(i).getPassword() == null){
-    		usuarios.get(i).setPassword("null");
-    	}
     	for(int z = 0; z< usuarios.get(i).getPassword().length();z++){
     		cantcontrasenia = cantcontrasenia + "*";
     	}
     	out.print("<td>" + cantcontrasenia + "</td>");
+    	if(usuarios.get(i).getFechaNacimiento() == null){
+    	out.print("<td>Fecha Indefinida</td>");
+    	}else{    		
+    	out.print("<td>" + usuarios.get(i).getFechaNacimiento() + "</td>");
+    	}
+    	out.print("<td><a class='btn btn-primary' href='/Ejercicio1Crud/ModificarUsuario?id=" + usuarios.get(i).getId() + "'>Modificar</a></td>");
+    	out.print("<td><a class='btn btn-danger' href='/Ejercicio1Crud/EliminarUsuario?id=" + usuarios.get(i).getId() + "'>Eliminar</a></td>");
+    	if(usuarios.get(i).getPassword() == null){
+    		usuarios.get(i).setPassword("null");
+    	}
     	out.print("</tr>");
     }
     %>
