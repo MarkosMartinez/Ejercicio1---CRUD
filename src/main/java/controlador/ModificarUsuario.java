@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.ModeloUsuario;
+import modelo.Usuario;
 
 /**
  * Servlet implementation class ModificarUsuario
@@ -34,10 +35,11 @@ public class ModificarUsuario extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		
-		ModeloUsuario usuario = new ModeloUsuario();
+		Usuario usuario = new Usuario();
+		ModeloUsuario modeloUsuario = new ModeloUsuario();
 		
 		try {
-			usuario = usuario.getUsuario(id);
+			usuario = modeloUsuario.getUsuario(id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

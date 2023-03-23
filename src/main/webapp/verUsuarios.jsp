@@ -1,5 +1,5 @@
 <%@ page import="java.util.ArrayList"%>
-<%@ page import="modelo.ModeloUsuario"%>
+<%@ page import="modelo.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
 <body>
 
 <%
-ArrayList<ModeloUsuario> usuarios = (ArrayList<ModeloUsuario>) request.getAttribute("usuarios");
+ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("usuarios");
 String aviso = (String) request.getAttribute("aviso");
 
 if(aviso.equals("usucreado")){

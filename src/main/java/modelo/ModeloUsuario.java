@@ -8,54 +8,17 @@ import java.util.Date;
 
 import clases.Conexion;
 
-public class ModeloUsuario {
-
-	private int id;
-	private String nombre;
-	private Date fechaDeNacimiento;
-	private String password;
+public class ModeloUsuario extends Conexion{
 	
-	
-	public Date getFechaDeNacimiento() {
-		return fechaDeNacimiento;
-	}
-	public void setFechaDeNacimiento(Date fechaDeNacimiento) {
-		this.fechaDeNacimiento = fechaDeNacimiento;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public Date getFechaNacimiento() {
-		return fechaDeNacimiento;
-	}
-	public void setFechaNacimineto(Date fecha) {
-		this.fechaDeNacimiento = fecha;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	
-	public ArrayList<ModeloUsuario> getUsuarios() throws SQLException {
-		ArrayList<ModeloUsuario> usuarios = new ArrayList<>();
+	public ArrayList<Usuario> getUsuarios() throws SQLException {
+		ArrayList<Usuario> usuarios = new ArrayList<>();
 		Conexion conector = new Conexion();
 		conector.conectar();
 	
 		PreparedStatement pSt = conector.getCon().prepareStatement("SELECT id, nombre_apellido, fecha_nacimiento, password FROM usuarios");
 		ResultSet resultado = pSt.executeQuery();
 		while(resultado.next()) {
-			ModeloUsuario usuario = new ModeloUsuario();
+			Usuario usuario = new Usuario();
 			usuario.setId(resultado.getInt("id"));
 			usuario.setNombre(resultado.getString("nombre_apellido"));
 			usuario.setFechaNacimineto(resultado.getDate("fecha_nacimiento"));
@@ -68,8 +31,8 @@ public class ModeloUsuario {
 		
 	}
 	
-	public ModeloUsuario getUsuario(int id) throws SQLException {
-		ModeloUsuario usuario = new ModeloUsuario();
+	public Usuario getUsuario(int id) throws SQLException {
+		Usuario usuario = new Usuario();
 		Conexion conector = new Conexion();
 		conector.conectar();
 	

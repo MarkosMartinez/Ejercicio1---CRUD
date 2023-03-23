@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.ModeloUsuario;
+import modelo.Usuario;
 
 /**
  * Servlet implementation class ejecutarJSP
@@ -30,15 +31,14 @@ public class VerUsuarios extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<ModeloUsuario> usuarios = new ArrayList<>();
+		ArrayList<Usuario> usuarios = new ArrayList<>();
+		ModeloUsuario modeloUsuario = new ModeloUsuario();
 		String aviso = request.getParameter("aviso");
 		if(aviso == null) {
 			aviso = "ninguno";
 		}
-			
-		ModeloUsuario usuario = new ModeloUsuario();
 			try {
-				usuarios = usuario.getUsuarios();
+				usuarios = modeloUsuario.getUsuarios();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
