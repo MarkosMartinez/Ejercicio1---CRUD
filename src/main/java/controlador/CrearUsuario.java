@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import modelo.ModeloUsuario;
+import modelo.Usuario;
 
 /**
  * Servlet implementation class CrearUsuario
@@ -50,13 +51,20 @@ public class CrearUsuario extends HttpServlet {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		ModeloUsuario usuario = new ModeloUsuario();
-		try {
-			usuario.insertUsuarios(nombre, dni, codigo, fecha, password);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		
+		if (Usuario.verificarContraseña(password)) {
+			ModeloUsuario usuario = new ModeloUsuario();
+			try {
+				usuario.insertUsuarios(nombre, dni, codigo, fecha, password);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			response.sendRedirect(request.getContextPath() + "/VerUsuarios?aviso=usucreado");
+		}else {
+			response.sendRedirect(request.getContextPath() + "/VerUsuarios?aviso=error");
 		}
-		response.sendRedirect(request.getContextPath() + "/VerUsuarios?aviso=usucreado");
+		
+		
 	}
 
 }

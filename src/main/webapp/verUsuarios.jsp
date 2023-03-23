@@ -22,6 +22,8 @@ if(aviso.equals("usucreado")){
 	out.print("<div class='alert alert-danger' role='alert'>Usuario eliminado!</div>");
 }else if(aviso.equals("usumodificado")){
 	out.print("<div class='alert alert-primary' role='alert'>Usuario Modificado!</div>");
+}else if(aviso.equals("error")){
+	out.print("<div class='alert alert-danger' role='alert'>Ha ocurrido un error. Vuelve a intentarlo!</div>");
 }
 %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">

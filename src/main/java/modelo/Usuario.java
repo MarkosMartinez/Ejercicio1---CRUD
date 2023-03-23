@@ -41,4 +41,16 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 	
+	public static boolean verificarContraseña(String contraseña) {
+		Boolean cumpleLosRequisitos = false;
+		if(contraseña.length() >= 8) {
+			 for(char c : contraseña.toCharArray()){
+				 if(Character.isDigit(c)){
+					 cumpleLosRequisitos = true;
+				 }
+			 }
+		}
+		return cumpleLosRequisitos;
+	}
+	
 }
