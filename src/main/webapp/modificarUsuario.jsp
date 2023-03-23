@@ -21,17 +21,17 @@ Date fecha = (Date) request.getAttribute("fecha");
     <div class="col">
 <form action="ModificarUsuario" method="POST">   
   <div class="form-group">
-  <input type="hidden" name="id" value="<% out.print(id);%>"/>
-    <label for="id"><b>ID: <% out.print(id);%></b></label>
-    <!--<input type="text" name="id" id="id" class="form-control" placeholder="Error!" value="<% out.print(id);%>" readonly="readonly">-->
+  <input type="hidden" name="id" value="${id}"/>
+    <label for="id"><b>ID:${id}</b></label>
+    <!--<input type="text" name="id" id="id" class="form-control" placeholder="Error!" value="${id}" readonly="readonly">-->
   </div>
   <div class="form-group">
     <label for="nombre">Nombre:</label>
-    <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Error" value="<% out.print(nombre);%>">
+    <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Error" value="${nombre}">
   </div>
   <div class="form-group">
     <label for="nombre">Fecha de nacimiento:</label>
-     <input type="date" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" placeholder="Error" value="<%out.print(fecha);%>">
+     <input type="date" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" placeholder="Error" value="${fecha}">
   </div>
   <div class="form-group">
     <label for="password">Contraseña:</label>
