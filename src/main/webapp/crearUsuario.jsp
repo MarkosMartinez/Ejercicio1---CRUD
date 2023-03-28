@@ -2,6 +2,7 @@
 <%@ page import="modelo.Rol"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,10 +11,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
-
-<%
-ArrayList<Rol> roles = (ArrayList<Rol>) request.getAttribute("roles");
-%>
 
 <div class="container">
   <div class="row">
@@ -43,11 +40,9 @@ ArrayList<Rol> roles = (ArrayList<Rol>) request.getAttribute("roles");
     <label for="fecha_nacimiento"  class="sr-only">Rol: </label>
     <select id="roles" class="form-select" name="roles" required="required">
     <option value="0"></option>
-    <%
-    for(Rol rol:roles){
-    	out.print("<option value='" + rol.getId() +"'>" + rol.getNombre() + "</option>");
-    }
-    %>
+    <c:forEach items="${roles}" var="rol">
+  		<option value="${rol.id}">${rol.nombre}</option>
+	</c:forEach>
 	</select>
   </div>
   <button type="submit" class="btn btn-primary mb-2">Crear usuario</button>

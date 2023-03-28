@@ -3,6 +3,7 @@
 <%@ page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,10 +15,8 @@
 
 <%
 int id = (Integer) request.getAttribute("id");
-int id_rol = (Integer) request.getAttribute("id_rol");
 String nombre = (String) request.getAttribute("nombre");
 Date fecha = (Date) request.getAttribute("fecha");
-ArrayList<Rol> roles = (ArrayList<Rol>) request.getAttribute("roles");
 %>
 
 <div class="container">
@@ -45,16 +44,16 @@ ArrayList<Rol> roles = (ArrayList<Rol>) request.getAttribute("roles");
     <label for="roles"  class="sr-only">Rol:</label>
     <select id="roles" class="form-select" name="roles" required="required">
     <option value="0"></option>
-    <%
-    for(Rol rol:roles){
-    	if(id_rol == rol.getId()){
-    		out.print("AAAAAA");
-    		out.print("<option selected value='" + rol.getId() +"'>" + rol.getNombre() + "</option>");
-    	}else{
-    	out.print("<option value='" + rol.getId() +"'>" + rol.getNombre() + "</option>");
-    	}
-    }
-    %>
+    <c:forEach var="rol" items="${roles}">
+  <c:choose>
+    <c:when test="${id_rol == rol.id}">
+      <option selected value="${rol.id}">${rol.nombre}</option>
+    </c:when>
+    	<c:otherwise>
+      			<option value="${rol.id}">${rol.nombre}</option>
+    	</c:otherwise>
+  	</c:choose>
+	</c:forEach>
 	</select>
   </div>
   <button type="submit" class="btn btn-primary">Modificar</button>

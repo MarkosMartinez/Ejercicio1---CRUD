@@ -3,6 +3,8 @@
 <%@ page import="modelo.Rol"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,18 +18,20 @@
 <%
 ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("usuarios");
 ArrayList<Rol> roles = (ArrayList<Rol>) request.getAttribute("roles");
-String aviso = (String) request.getAttribute("aviso");
-
-if(aviso.equals("usucreado")){
-	out.print("<div class='alert alert-success' role='alert'>Usuario creado con exito!</div>");
-}else if(aviso.equals("usueliminado")){
-	out.print("<div class='alert alert-danger' role='alert'>Usuario eliminado!</div>");
-}else if(aviso.equals("usumodificado")){
-	out.print("<div class='alert alert-primary' role='alert'>Usuario Modificado!</div>");
-}else if(aviso.equals("error")){
-	out.print("<div class='alert alert-danger' role='alert'>Ha ocurrido un error. Vuelve a intentarlo!</div>");
-}
 %>
+      <c:if test = "${aviso == 'usucreado'}">
+         <div class='alert alert-success' role='alert'>Usuario creado con exito!</div>
+      </c:if>
+      <c:if test = "${aviso == 'usueliminado'}">
+        <div class='alert alert-danger' role='alert'>Usuario eliminado!</div>
+      </c:if>
+      <c:if test = "${aviso == 'usumodificado'}">
+        <div class='alert alert-primary' role='alert'>Usuario Modificado!</div>
+      </c:if>
+      <c:if test = "${aviso == 'error'}">
+         <div class='alert alert-danger' role='alert'>Ha ocurrido un error. Vuelve a intentarlo!</div>
+      </c:if>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <h2>Ejercicio 1 - Crud JSP</h2>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -42,13 +46,14 @@ if(aviso.equals("usucreado")){
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Nombre</th>
-      <th scope="col">Contraseña</th>
+      <th scope="col">ContraseÃ±a</th>
       <th scope="col">Rol</th>
       <th scope="col">Fecha de Nacimiento</th>
       <th scope="col">Modificar</th>
       <th scope="col">Eliminar</th>
     </tr>
   </thead>
+  
     <%
     for(int i = 0; i<usuarios.size();i++){
     	out.print("<tr>");
@@ -71,13 +76,13 @@ if(aviso.equals("usucreado")){
     	if(!encontrado){
 			out.print("<td>Sin Rol!</td>");
 		}
-    	
     	if(usuarios.get(i).getFechaNacimiento() == null){
-    	out.print("<td>Fecha Indefinida</td>");
-    	}else{    		
-    	out.print("<td>" + usuarios.get(i).getFechaNacimiento() + "</td>");
-    	}
-    	out.print("<td><a class='btn btn-primary' href='/Ejercicio1Crud/ModificarUsuario?id=" + usuarios.get(i).getId() + "'>Modificar</a></td>");
+        	out.print("<td>Fecha Indefinida</td>");
+        	}else{
+        		%>
+        		<td><fmt:formatDate pattern = "dd-MM-yyyy" value = "${usuarios.get(i).getFechaNacimiento()}" /></td>
+        	<%}
+        	out.print("<td><a class='btn btn-primary' href='/Ejercicio1Crud/ModificarUsuario?id=" + usuarios.get(i).getId() + "'>Modificar</a></td>");
     	out.print("<td><a class='btn btn-danger' href='/Ejercicio1Crud/EliminarUsuario?id=" + usuarios.get(i).getId() + "'>Eliminar</a></td>");
     	if(usuarios.get(i).getPassword() == null){
     		usuarios.get(i).setPassword("null");
