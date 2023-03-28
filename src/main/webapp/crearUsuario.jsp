@@ -1,3 +1,5 @@
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="modelo.Rol"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -9,6 +11,9 @@
 </head>
 <body>
 
+<%
+ArrayList<Rol> roles = (ArrayList<Rol>) request.getAttribute("roles");
+%>
 
 <div class="container">
   <div class="row">
@@ -33,6 +38,17 @@
   <div class="form-group mx-sm-3 mb-2">
     <label for="fecha_nacimiento"  class="sr-only">Contraseña: </label>
     <input type="password" name="password" class="form-control" id="password" placeholder="Nueva Contraseña">
+  </div>
+   <div class="form-group mx-sm-3 mb-2">
+    <label for="fecha_nacimiento"  class="sr-only">Rol: </label>
+    <select id="roles" class="form-select" name="roles">
+    <option value="0"></option>
+    <%
+    for(Rol rol:roles){
+    	out.print("<option value='" + rol.getId() +"'>" + rol.getNombre() + "</option>");
+    }
+    %>
+	</select>
   </div>
   <button type="submit" class="btn btn-primary mb-2">Crear usuario</button>
 </form>
