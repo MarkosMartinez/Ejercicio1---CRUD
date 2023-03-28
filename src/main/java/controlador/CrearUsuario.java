@@ -57,6 +57,7 @@ public class CrearUsuario extends HttpServlet {
 		String codigo = request.getParameter("codigo");
 		String password = request.getParameter("password");
 		String fechaSinFormato = request.getParameter("fecha_nacimiento");
+		int id_rol = Integer.parseInt(request.getParameter("roles"));
 		Date fecha = null;
 		try {
 			fecha = new SimpleDateFormat("yyyy-MM-dd").parse(fechaSinFormato);
@@ -67,7 +68,7 @@ public class CrearUsuario extends HttpServlet {
 		if (Usuario.verificarContraseña(password)) {
 			ModeloUsuario usuario = new ModeloUsuario();
 			try {
-				usuario.insertUsuarios(nombre, dni, codigo, fecha, password);
+				usuario.insertUsuarios(nombre, dni, codigo, fecha, password, id_rol);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

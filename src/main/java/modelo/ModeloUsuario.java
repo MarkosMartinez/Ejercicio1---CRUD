@@ -73,15 +73,16 @@ public class ModeloUsuario extends Conexion{
 		conector.cerrar();
 		
 	}
-	public void insertUsuarios(String Nuevonombre, String dni, String codigo, Date fecha, String password) throws SQLException {
+	public void insertUsuarios(String Nuevonombre, String dni, String codigo, Date fecha, String password, int id_rol) throws SQLException {
 		Conexion conector = new Conexion();
 		conector.conectar();
-		PreparedStatement insertar = conector.getCon().prepareStatement("INSERT INTO usuarios (nombre_apellido, dni, codigo, fecha_nacimiento, password) VALUES (?, ?, ?, ?, ?);");
+		PreparedStatement insertar = conector.getCon().prepareStatement("INSERT INTO usuarios (nombre_apellido, dni, codigo, fecha_nacimiento, password, id_rol) VALUES (?, ?, ?, ?, ?, ?);");
 		insertar.setString(1, Nuevonombre);
 		insertar.setString(2, dni);
 		insertar.setString(3, codigo);
 		insertar.setDate(4, new java.sql.Date( fecha.getTime()));
 		insertar.setString(5, password);
+		insertar.setInt(6, id_rol);
 		insertar.execute();
 		conector.cerrar();	
 		
