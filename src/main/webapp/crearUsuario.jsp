@@ -41,7 +41,7 @@ ArrayList<Rol> roles = (ArrayList<Rol>) request.getAttribute("roles");
   </div>
    <div class="form-group mx-sm-3 mb-2">
     <label for="fecha_nacimiento"  class="sr-only">Rol: </label>
-    <select id="roles" class="form-select" name="roles">
+    <select id="roles" class="form-select" name="roles" required="required">
     <option value="0"></option>
     <%
     for(Rol rol:roles){

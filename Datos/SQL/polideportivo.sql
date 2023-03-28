@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-03-2023 a las 09:51:11
+-- Tiempo de generación: 28-03-2023 a las 13:37:42
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -114,7 +114,7 @@ CREATE TABLE `usuarios` (
   `dni` varchar(9) NOT NULL,
   `codigo` varchar(8) NOT NULL,
   `fecha_nacimiento` date DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
   `id_rol` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -138,7 +138,10 @@ INSERT INTO `usuarios` (`id`, `nombre_apellido`, `dni`, `codigo`, `fecha_nacimie
 (14, 'anartz vargas', '15151515a', '1013', NULL, 'null', 0),
 (15, 'beñat bikuña', '16161616a', '1014', NULL, 'null', 0),
 (16, 'Aitor Goikoetxea', '45781245J', '1015', NULL, 'null', 0),
-(30, 'Aitor Etxaide', '4578455T', '1016', '2023-03-23', 'Contraseña', 0);
+(30, 'Aitor Etxaide', '4578455T', '1016', '2023-03-23', 'Contraseña', 0),
+(34, 'sadasd', 'asdasdasd', '1018', '2023-03-18', 'aaaaa', 1),
+(36, 'root', '12345678G', '1019', '2023-03-28', 'toor12345', 2),
+(37, 'PruebaUsuAdmin', '12323423g', '1020', '2023-03-03', 'a', 1);
 
 --
 -- Índices para tablas volcadas
@@ -200,7 +203,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Restricciones para tablas volcadas

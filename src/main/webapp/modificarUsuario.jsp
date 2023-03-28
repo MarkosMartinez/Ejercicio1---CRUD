@@ -1,3 +1,5 @@
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="modelo.Rol"%>
 <%@ page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -12,8 +14,10 @@
 
 <%
 int id = (Integer) request.getAttribute("id");
+int id_rol = (Integer) request.getAttribute("id_rol");
 String nombre = (String) request.getAttribute("nombre");
 Date fecha = (Date) request.getAttribute("fecha");
+ArrayList<Rol> roles = (ArrayList<Rol>) request.getAttribute("roles");
 %>
 
 <div class="container">
@@ -27,15 +31,31 @@ Date fecha = (Date) request.getAttribute("fecha");
   </div>
   <div class="form-group">
     <label for="nombre">Nombre:</label>
-    <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Error" value="${nombre}">
+    <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Error" value="${nombre}" required="required">
   </div>
   <div class="form-group">
     <label for="nombre">Fecha de nacimiento:</label>
-     <input type="date" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" placeholder="Error" value="${fecha}">
+     <input type="date" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" placeholder="Error" value="${fecha}" required="required">
   </div>
   <div class="form-group">
     <label for="password">Contraseña:</label>
-     <input type="password" name="password" class="form-control" id="password" placeholder="Nueva Contraseña">
+     <input type="password" name="password" class="form-control" id="password" placeholder="Nueva Contraseña" required="required">
+  </div>
+  <div class="form-group">
+    <label for="roles"  class="sr-only">Rol:</label>
+    <select id="roles" class="form-select" name="roles" required="required">
+    <option value="0"></option>
+    <%
+    for(Rol rol:roles){
+    	if(id_rol == rol.getId()){
+    		out.print("AAAAAA");
+    		out.print("<option selected value='" + rol.getId() +"'>" + rol.getNombre() + "</option>");
+    	}else{
+    	out.print("<option value='" + rol.getId() +"'>" + rol.getNombre() + "</option>");
+    	}
+    }
+    %>
+	</select>
   </div>
   <button type="submit" class="btn btn-primary">Modificar</button>
 </form>

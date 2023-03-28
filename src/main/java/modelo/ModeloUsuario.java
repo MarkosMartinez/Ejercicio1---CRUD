@@ -45,6 +45,7 @@ public class ModeloUsuario extends Conexion{
 		usuario.setNombre(resultado.getString("nombre_apellido"));
 		usuario.setFechaNacimineto(resultado.getDate("fecha_nacimiento"));
 		usuario.setPassword(resultado.getString("password"));
+		usuario.setId_rol(resultado.getInt("id_rol"));
 		}
 		gettear.close();
 		conector.cerrar();
@@ -62,14 +63,15 @@ public class ModeloUsuario extends Conexion{
 		
 	}
 	
-	public void modUsuarios(int id, String nombre, Date fecha, String password) throws SQLException {
+	public void modUsuarios(int id, String nombre, Date fecha, String password, int id_rol) throws SQLException {
 		Conexion conector = new Conexion();
 		conector.conectar();
-		PreparedStatement pstModificar = conector.getCon().prepareStatement("UPDATE usuarios SET nombre_apellido = ?, fecha_nacimiento = ?, password = ? WHERE id = ?;");
+		PreparedStatement pstModificar = conector.getCon().prepareStatement("UPDATE usuarios SET nombre_apellido = ?, fecha_nacimiento = ?, password = ?, id_rol = ? WHERE id = ?;");
 		pstModificar.setString(1, nombre);
 		pstModificar.setDate(2, new java.sql.Date( fecha.getTime()));
 		pstModificar.setString(3, password);
-		pstModificar.setInt(4, id);
+		pstModificar.setInt(4, id_rol);
+		pstModificar.setInt(5, id);
 		pstModificar.execute();
 		conector.cerrar();
 		

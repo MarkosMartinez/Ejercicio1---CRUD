@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -12,7 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.ModeloRol;
 import modelo.ModeloUsuario;
+import modelo.Rol;
 import modelo.Usuario;
 
 /**
@@ -46,8 +49,20 @@ public class ModificarUsuario extends HttpServlet {
 		String nombre = usuario.getNombre();
 		Date fecha = usuario.getFechaNacimiento();
 		String password = usuario.getPassword();
+		int id_rol = usuario.getId_rol();
 		
+		ModeloRol mrol = new ModeloRol();
+		ArrayList<Rol> roles = new ArrayList<>();
+		try {
+			roles = mrol.getRoles();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("roles", roles);
 		request.setAttribute("id", id);
+		request.setAttribute("id_rol", id_rol);
 		request.setAttribute("nombre", nombre);
 		request.setAttribute("fecha", fecha);
 		request.setAttribute("password", password);
@@ -62,6 +77,7 @@ public class ModificarUsuario extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String fechaSinFormato = request.getParameter("fecha_nacimiento");
 		String password = request.getParameter("password");
+		int id_rol = Integer.parseInt(request.getParameter("roles"));
 		Date fecha = null;
 		try {
 			fecha = new SimpleDateFormat("yyyy-MM-dd").parse(fechaSinFormato);
@@ -71,7 +87,7 @@ public class ModificarUsuario extends HttpServlet {
 
 		ModeloUsuario usuario = new ModeloUsuario();
 		try {
-			usuario.modUsuarios(id, nombre, fecha, password);
+			usuario.modUsuarios(id, nombre, fecha, password, id_rol);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
