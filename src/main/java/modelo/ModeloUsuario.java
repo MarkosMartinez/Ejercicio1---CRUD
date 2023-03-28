@@ -14,7 +14,7 @@ public class ModeloUsuario extends Conexion{
 		Conexion conector = new Conexion();
 		conector.conectar();
 	
-		PreparedStatement pSt = conector.getCon().prepareStatement("SELECT id, nombre_apellido, fecha_nacimiento, password FROM usuarios");
+		PreparedStatement pSt = conector.getCon().prepareStatement("SELECT id, nombre_apellido, fecha_nacimiento, password, id_rol FROM usuarios");
 		ResultSet resultado = pSt.executeQuery();
 		while(resultado.next()) {
 			Usuario usuario = new Usuario();
@@ -22,6 +22,7 @@ public class ModeloUsuario extends Conexion{
 			usuario.setNombre(resultado.getString("nombre_apellido"));
 			usuario.setFechaNacimineto(resultado.getDate("fecha_nacimiento"));
 			usuario.setPassword(resultado.getString("password"));
+			usuario.setId_rol(resultado.getInt("id_rol"));
 			
 			usuarios.add(usuario);
 		}

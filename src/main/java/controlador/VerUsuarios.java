@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.ModeloRol;
 import modelo.ModeloUsuario;
+import modelo.Rol;
 import modelo.Usuario;
 
 /**
@@ -42,7 +44,18 @@ public class VerUsuarios extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-
+			
+		ModeloRol mrol = new ModeloRol();
+		ArrayList<Rol> listaroles = new ArrayList<>();
+		
+		try {
+			listaroles = mrol.getRoles();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("roles", listaroles);
 		request.setAttribute("aviso", aviso);
 		request.setAttribute("usuarios", usuarios);
 		request.getRequestDispatcher("verUsuarios.jsp").forward(request, response);

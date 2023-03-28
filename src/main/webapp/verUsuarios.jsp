@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="modelo.Usuario"%>
+<%@ page import="modelo.Rol"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -14,6 +15,7 @@
 
 <%
 ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("usuarios");
+ArrayList<Rol> roles = (ArrayList<Rol>) request.getAttribute("roles");
 String aviso = (String) request.getAttribute("aviso");
 
 if(aviso.equals("usucreado")){
@@ -41,6 +43,7 @@ if(aviso.equals("usucreado")){
       <th scope="col">ID</th>
       <th scope="col">Nombre</th>
       <th scope="col">Contraseña</th>
+      <th scope="col">Rol</th>
       <th scope="col">Fecha de Nacimiento</th>
       <th scope="col">Modificar</th>
       <th scope="col">Eliminar</th>
@@ -56,6 +59,19 @@ if(aviso.equals("usucreado")){
     		cantcontrasenia = cantcontrasenia + "*";
     	}
     	out.print("<td>" + cantcontrasenia + "</td>");
+    	boolean encontrado = false;
+    	for(Rol rol:roles){
+    		encontrado = false;
+    		if(usuarios.get(i).getId_rol() == rol.getId()){
+    			out.print("<td>" + rol.getNombre() + "</td>");
+    			encontrado = true;
+    			break;
+    		}
+    	}
+    	if(!encontrado){
+			out.print("<td>Sin Rol!</td>");
+		}
+    	
     	if(usuarios.get(i).getFechaNacimiento() == null){
     	out.print("<td>Fecha Indefinida</td>");
     	}else{    		

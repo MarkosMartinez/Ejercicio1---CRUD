@@ -8,6 +8,7 @@ public class Usuario {
 	private String nombre;
 	private Date fechaDeNacimiento;
 	private String password;
+	private int id_rol;
 	
 	
 	public Date getFechaDeNacimiento() {
@@ -39,6 +40,13 @@ public class Usuario {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+	
+	public int getId_rol() {
+		return id_rol;
+	}
+	public void setId_rol(int id_rol) {
+		this.id_rol = id_rol;
 	}
 	
 	public static boolean verificarContraseña(String contraseña) {
