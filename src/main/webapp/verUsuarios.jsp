@@ -14,11 +14,6 @@
 <link rel="stylesheet" href="Estilos/style.css">
 </head>
 <body>
-
-<%
-ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("usuarios");
-ArrayList<Rol> roles = (ArrayList<Rol>) request.getAttribute("roles");
-%>
       <c:if test = "${aviso == 'usucreado'}">
          <div class='alert alert-success' role='alert'>Usuario creado con exito!</div>
       </c:if>
@@ -46,7 +41,7 @@ ArrayList<Rol> roles = (ArrayList<Rol>) request.getAttribute("roles");
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Nombre</th>
-      <th scope="col">Contraseña</th>
+      <th scope="col">ContraseÃ±a</th>
       <th scope="col">Rol</th>
       <th scope="col">Fecha de Nacimiento</th>
       <th scope="col">Modificar</th>
@@ -54,42 +49,41 @@ ArrayList<Rol> roles = (ArrayList<Rol>) request.getAttribute("roles");
     </tr>
   </thead>
   
-    <%
-    for(int i = 0; i<usuarios.size();i++){
-    	out.print("<tr>");
-    	out.print("<td>" + usuarios.get(i).getId() + "</td>");
-    	out.print("<td>" + usuarios.get(i).getNombre() + "</td>");
-    	String cantcontrasenia = "";
-    	for(int z = 0; z< usuarios.get(i).getPassword().length();z++){
-    		cantcontrasenia = cantcontrasenia + "*";
-    	}
-    	out.print("<td>" + cantcontrasenia + "</td>");
-    	boolean encontrado = false;
-    	for(Rol rol:roles){
-    		encontrado = false;
-    		if(usuarios.get(i).getId_rol() == rol.getId()){
-    			out.print("<td>" + rol.getNombre() + "</td>");
-    			encontrado = true;
-    			break;
-    		}
-    	}
-    	if(!encontrado){
-			out.print("<td>Sin Rol!</td>");
-		}
-    	if(usuarios.get(i).getFechaNacimiento() == null){
-        	out.print("<td>Fecha Indefinida</td>");
-        	}else{
-        		%>
-        		<td><fmt:formatDate pattern = "dd-MM-yyyy" value = "${usuarios.get(i).getFechaNacimiento()}" /></td>
-        	<%}
-        	out.print("<td><a class='btn btn-primary' href='/Ejercicio1Crud/ModificarUsuario?id=" + usuarios.get(i).getId() + "'>Modificar</a></td>");
-    	out.print("<td><a class='btn btn-danger' href='/Ejercicio1Crud/EliminarUsuario?id=" + usuarios.get(i).getId() + "'>Eliminar</a></td>");
-    	if(usuarios.get(i).getPassword() == null){
-    		usuarios.get(i).setPassword("null");
-    	}
-    	out.print("</tr>");
-    }
-    %>
+    <c:forEach var="usuario" items="${usuarios}">
+	<tr>
+		<td>${usuario.id}</td>
+		<td>${usuario.nombre}</td>
+		  <c:set var="cantcontrasenia" value=""/>
+    <c:forEach begin="0" end="${usuario.password.length() - 1}" var="z">
+      <c:set var="cantcontrasenia" value="${cantcontrasenia}*"/>
+    </c:forEach>
+    <td>${cantcontrasenia}</td>
+		<c:set var="encontrado" value="false" />
+		<c:forEach var="rol" items="${roles}">
+			<c:if test="${usuario.id_rol == rol.id}">
+				<td>${rol.nombre}</td>
+				<c:set var="encontrado" value="true" />
+			</c:if>
+		</c:forEach>
+		<c:if test="${not encontrado}">
+			<td>Sin Rol!</td>
+		</c:if>
+		<c:choose>
+			<c:when test="${usuario.fechaNacimiento == null}">
+				<td>Fecha Indefinida</td>
+			</c:when>
+			<c:otherwise>
+				<td><fmt:formatDate pattern="dd-MM-yyyy" value="${usuario.fechaNacimiento}" /></td>
+			</c:otherwise>
+		</c:choose>
+		<td><a class="btn btn-primary" href="/Ejercicio1Crud/ModificarUsuario?id=${usuario.id}">Modificar</a></td>
+		<td><a class="btn btn-danger" href="/Ejercicio1Crud/EliminarUsuario?id=${usuario.id}">Eliminar</a></td>
+		<c:if test="${usuario.password == null}">
+			<c:set target="${usuario}" property="password" value="null" />
+		</c:if>
+	</tr>
+</c:forEach>
+
 </table>
 
 </body>
