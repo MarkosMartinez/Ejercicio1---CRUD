@@ -13,12 +13,6 @@
 </head>
 <body>
 
-<%
-int id = (Integer) request.getAttribute("id");
-String nombre = (String) request.getAttribute("nombre");
-Date fecha = (Date) request.getAttribute("fecha");
-%>
-
 <div class="container">
   <div class="row">
     <div class="col">
