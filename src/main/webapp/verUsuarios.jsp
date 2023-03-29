@@ -46,7 +46,7 @@ ArrayList<Rol> roles = (ArrayList<Rol>) request.getAttribute("roles");
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Nombre</th>
-      <th scope="col">ContraseÃ±a</th>
+      <th scope="col">Contraseña</th>
       <th scope="col">Rol</th>
       <th scope="col">Fecha de Nacimiento</th>
       <th scope="col">Modificar</th>
