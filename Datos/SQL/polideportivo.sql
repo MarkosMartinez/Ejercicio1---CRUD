@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-03-2023 a las 13:37:42
+-- Tiempo de generación: 29-03-2023 a las 14:19:05
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -123,7 +123,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre_apellido`, `dni`, `codigo`, `fecha_nacimiento`, `password`, `id_rol`) VALUES
-(2, 'iñigo rosado', '22222222a', '1001', '2023-03-12', 'Kaixoooooooooooooo', 0),
+(2, 'iñigo rosado', '22222222a', '1001', '2023-03-12', 'Kaixooooooooooo', 1),
 (3, 'oier ugalde', '33333333a', '1002', '2023-06-23', 'a', 0),
 (4, 'beñat bilbao', '44444444a', '1003', NULL, 'null', 0),
 (5, 'markel rajado', '55555555a', '1004', NULL, 'null', 0),
