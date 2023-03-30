@@ -6,6 +6,9 @@ public class Usuario {
 
 	private int id;
 	private String nombre;
+	private String dni;
+	private int codigo;
+	private String contrasenia;
 	private Date fechaDeNacimiento;
 	private String password;
 	private int id_rol;
@@ -59,6 +62,24 @@ public class Usuario {
 			 }
 		}
 		return cumpleLosRequisitos;
+	}
+	public String getDni() {
+		return dni;
+	}
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+	public int getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
+	}
+	public String getContrasenia() {
+		return contrasenia;
+	}
+	public void setContrasenia(String contrasenia) {
+		this.contrasenia = contrasenia;
 	}
 	
 }

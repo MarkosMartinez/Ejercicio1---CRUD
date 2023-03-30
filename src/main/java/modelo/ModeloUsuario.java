@@ -53,6 +53,32 @@ public class ModeloUsuario extends Conexion{
 		
 	}
 	
+	public Usuario comprobarLogin(String dni, String pass) throws SQLException {
+		Usuario usuario = new Usuario();
+		Conexion conector = new Conexion();
+		conector.conectar();
+	
+		PreparedStatement gettear =conector.getCon().prepareStatement("SELECT * FROM usuarios WHERE dni=? AND password = ?");
+		gettear.setString(1, dni);
+		gettear.setString(2, pass);
+		ResultSet resultado=gettear.executeQuery();
+		if(resultado.next()) {
+		usuario.setId(resultado.getInt("id"));
+		usuario.setNombre(resultado.getString("nombre_apellido"));
+		usuario.setDni(resultado.getString("dni"));
+		usuario.setCodigo(resultado.getInt("codigo"));
+		usuario.setFechaNacimineto(resultado.getDate("fecha_nacimiento"));
+		usuario.setPassword(resultado.getString("password"));
+		usuario.setId_rol(resultado.getInt("id_rol"));
+		}else {
+			usuario.setDni("-1");
+		}
+		gettear.close();
+		conector.cerrar();
+		return usuario;
+		
+	}
+	
 	public void deleteUsuario(int id) throws SQLException {
 		Conexion conector = new Conexion();
 		conector.conectar();
