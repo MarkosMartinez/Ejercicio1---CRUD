@@ -41,7 +41,7 @@
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Nombre</th>
-      <th scope="col">Contraseña</th>
+      <th scope="col">ContraseÃ±a</th>
       <th scope="col">Rol</th>
       <th scope="col">Fecha de Nacimiento</th>
       <th scope="col">Modificar</th>
@@ -76,8 +76,25 @@
 				<td><fmt:formatDate pattern="dd-MM-yyyy" value="${usuario.fechaNacimiento}" /></td>
 			</c:otherwise>
 		</c:choose>
-		<td><a class="btn btn-primary" href="/Ejercicio1Crud/ModificarUsuario?id=${usuario.id}">Modificar</a></td>
-		<td><a class="btn btn-danger" href="/Ejercicio1Crud/EliminarUsuario?id=${usuario.id}">Eliminar</a></td>
+		
+		<c:forEach var="rol" items="${roles}">
+			<c:if test="${usuarioLogeado.id_rol == rol.id}">
+				<c:if test="${rol.nombre == 'Administrador'}">
+					<td><a class="btn btn-primary" href="/Ejercicio1Crud/ModificarUsuario?id=${usuario.id}">Modificar</a></td>
+					<td><a class="btn btn-danger" href="/Ejercicio1Crud/EliminarUsuario?id=${usuario.id}">Eliminar</a></td>
+				</c:if>
+				<c:if test="${rol.nombre == 'Usuario'}">
+					<c:if test="${usuarioLogeado.id != usuario.id}">
+						<td><a class="btn btn-primary disabled" href="/Ejercicio1Crud/VerUsuarios?aviso=error">Modificar</a></td>
+						<td><a class="btn btn-danger disabled" href="/Ejercicio1Crud/VerUsuarios?aviso=error">Eliminar</a></td>
+					</c:if>
+					<c:if test="${usuarioLogeado.id == usuario.id}">
+						<td><a class="btn btn-primary" href="/Ejercicio1Crud/ModificarUsuario?id=${usuario.id}">Modificar</a></td>
+						<td><a class="btn btn-danger" href="/Ejercicio1Crud/EliminarUsuario?id=${usuario.id}">Eliminar</a></td>
+					</c:if>
+				</c:if>
+			</c:if>
+		</c:forEach>
 		<c:if test="${usuario.password == null}">
 			<c:set target="${usuario}" property="password" value="null" />
 		</c:if>

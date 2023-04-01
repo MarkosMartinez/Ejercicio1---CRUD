@@ -31,6 +31,10 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		if(session != null) {
+			session.invalidate();
+		}
 		String aviso = request.getParameter("aviso");
 		if(aviso == null) {
 			aviso = "ninguno";

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelo.ModeloRol;
 import modelo.ModeloUsuario;
@@ -34,6 +35,11 @@ public class VerUsuarios extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Usuario> usuarios = new ArrayList<>();
+		HttpSession session = request.getSession();
+		Usuario usuarioLogeado = (Usuario) session.getAttribute("usuarioLogueado");
+		if(usuarioLogeado == null) {
+			response.sendRedirect("Login");
+		}else {
 		ModeloUsuario modeloUsuario = new ModeloUsuario();
 		String aviso = request.getParameter("aviso");
 		if(aviso == null) {
@@ -55,11 +61,12 @@ public class VerUsuarios extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		request.setAttribute("usuarioLogeado", usuarioLogeado);
 		request.setAttribute("roles", listaroles);
 		request.setAttribute("aviso", aviso);
 		request.setAttribute("usuarios", usuarios);
 		request.getRequestDispatcher("verUsuarios.jsp").forward(request, response);
-
+		}
 	}
 
 	/**
