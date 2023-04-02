@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import modelo.ModeloRol;
 import modelo.ModeloUsuario;
 import modelo.Rol;
@@ -63,7 +65,8 @@ public class CrearUsuario extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String dni = request.getParameter("dni");
 		String codigo = request.getParameter("codigo");
-		String password = request.getParameter("password");
+		String passSinEncriptar = request.getParameter("password");
+		String password = DigestUtils.sha1Hex(passSinEncriptar);
 		String fechaSinFormato = request.getParameter("fecha_nacimiento");
 		int id_rol = Integer.parseInt(request.getParameter("roles"));
 		Date fecha = null;

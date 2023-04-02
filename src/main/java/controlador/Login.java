@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import modelo.ModeloUsuario;
 import modelo.Usuario;
 
@@ -48,8 +50,9 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String dni = request.getParameter("dni");
-		String pass = request.getParameter("password");
+		String passSinEncriptar = request.getParameter("password");
 		ModeloUsuario musuario = new ModeloUsuario();
+		String pass = DigestUtils.sha1Hex(passSinEncriptar);
 		Usuario user = new Usuario();
 		try {
 			user = musuario.comprobarLogin(dni, pass);
@@ -62,6 +65,7 @@ public class Login extends HttpServlet {
 		}else {
 			HttpSession session = request.getSession();
 			session.setAttribute("usuarioLogueado", user);
+			
 			response.sendRedirect(request.getContextPath() + "/VerUsuarios");
 		}
 	}

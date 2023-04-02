@@ -31,7 +31,17 @@
   <h2>Ejercicio 1 - Crud JSP</h2>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-    <a class='btn btn-success' id="btnLogout" href='/Ejercicio1Crud/CrearUsuario'><b>Crear usuario</b></a>
+    
+    <c:forEach var="rol" items="${roles}">
+			<c:if test="${usuarioLogeado.id_rol == rol.id}">
+				<c:if test="${rol.nombre == 'Administrador'}">
+					<a class='btn btn-success' id="btnLogout" href='/Ejercicio1Crud/CrearUsuario'><b>Crear usuario</b></a>
+				</c:if>
+				<c:if test="${rol.nombre == 'Usuario'}">
+						 <a class='btn btn-success disabled' id="btnLogout" href='/Ejercicio1Crud/CrearUsuario'><b>Crear usuario</b></a>
+				</c:if>
+			</c:if>
+		</c:forEach>
       <a class='btn btn-secondary' id="btncrearUser" href='/Ejercicio1Crud/Login'><b>Cerrar sesion</b></a>
     </div>
   </div>
@@ -42,7 +52,7 @@
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Nombre</th>
-      <th scope="col">Contraseña</th>
+      <th scope="col">Contraseña (Encriptada)</th>
       <th scope="col">Rol</th>
       <th scope="col">Fecha de Nacimiento</th>
       <th scope="col">Modificar</th>
@@ -54,11 +64,12 @@
 	<tr>
 		<td>${usuario.id}</td>
 		<td>${usuario.nombre}</td>
-		  <c:set var="cantcontrasenia" value=""/>
-    <c:forEach begin="0" end="${usuario.password.length() - 1}" var="z">
-      <c:set var="cantcontrasenia" value="${cantcontrasenia}*"/>
-    </c:forEach>
-    <td>${cantcontrasenia}</td>
+		<c:if test="${usuario.password == null}">
+			<td>Sin Contraseña</td>
+		</c:if>
+		<c:if test="${usuario.password != null}">
+			<td>${usuario.password}</td>
+		</c:if>
 		<c:set var="encontrado" value="false" />
 		<c:forEach var="rol" items="${roles}">
 			<c:if test="${usuario.id_rol == rol.id}">
@@ -96,9 +107,6 @@
 				</c:if>
 			</c:if>
 		</c:forEach>
-		<c:if test="${usuario.password == null}">
-			<c:set target="${usuario}" property="password" value="null" />
-		</c:if>
 	</tr>
 </c:forEach>
 

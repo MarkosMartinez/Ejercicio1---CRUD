@@ -44,7 +44,11 @@ public class EliminarUsuario extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		if(id == usuarioLogeado.getId()) {
+		response.sendRedirect(request.getContextPath() + "/Login");
+		}else {
 		response.sendRedirect(request.getContextPath() + "/VerUsuarios?aviso=usueliminado");
+		}
 	}
 	}
 

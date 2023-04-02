@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.codec.digest.DigestUtils;
+
 import modelo.ModeloRol;
 import modelo.ModeloUsuario;
 import modelo.Rol;
@@ -84,7 +86,8 @@ public class ModificarUsuario extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
 		String fechaSinFormato = request.getParameter("fecha_nacimiento");
-		String password = request.getParameter("password");
+		String passSinEncriptar = request.getParameter("password");
+		String password = DigestUtils.sha1Hex(passSinEncriptar);
 		int id_rol = Integer.parseInt(request.getParameter("roles"));
 		Date fecha = null;
 		try {
