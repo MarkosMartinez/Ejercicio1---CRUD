@@ -31,7 +31,8 @@
   <h2>Ejercicio 1 - Crud JSP</h2>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class='btn btn-success' id="btncrearUser" href='/Ejercicio1Crud/CrearUsuario'><b>Crear usuario</b></a>
+    <a class='btn btn-success' id="btnLogout" href='/Ejercicio1Crud/CrearUsuario'><b>Crear usuario</b></a>
+      <a class='btn btn-secondary' id="btncrearUser" href='/Ejercicio1Crud/Login'><b>Cerrar sesion</b></a>
     </div>
   </div>
 </nav>

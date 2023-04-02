@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import modelo.ModeloRol;
 import modelo.ModeloUsuario;
@@ -36,6 +37,12 @@ public class CrearUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		Usuario usuarioLogeado = (Usuario) session.getAttribute("usuarioLogueado");
+		if(usuarioLogeado == null) {
+			response.sendRedirect("Login");
+		}else {
+		
 		ModeloRol mrol = new ModeloRol();
 		ArrayList<Rol> roles = new ArrayList<>();
 		try {
@@ -46,6 +53,7 @@ public class CrearUsuario extends HttpServlet {
 		}
 		request.setAttribute("roles", roles);
 		request.getRequestDispatcher("crearUsuario.jsp").forward(request, response);
+	}
 	}
 
 	/**

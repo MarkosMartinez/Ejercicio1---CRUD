@@ -34,12 +34,13 @@ public class VerUsuarios extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Usuario> usuarios = new ArrayList<>();
 		HttpSession session = request.getSession();
 		Usuario usuarioLogeado = (Usuario) session.getAttribute("usuarioLogueado");
 		if(usuarioLogeado == null) {
 			response.sendRedirect("Login");
 		}else {
+		
+		ArrayList<Usuario> usuarios = new ArrayList<>();
 		ModeloUsuario modeloUsuario = new ModeloUsuario();
 		String aviso = request.getParameter("aviso");
 		if(aviso == null) {
