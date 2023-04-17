@@ -50,7 +50,6 @@ public class CrearUsuario extends HttpServlet {
 		try {
 			roles = mrol.getRoles();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		request.setAttribute("roles", roles);

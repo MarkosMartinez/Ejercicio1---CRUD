@@ -52,7 +52,7 @@
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Nombre</th>
-      <th scope="col">ContraseÃ±a (Encriptada)</th>
+      <th scope="col">Contraseña (Encriptada)</th>
       <th scope="col">Rol</th>
       <th scope="col">Fecha de Nacimiento</th>
       <th scope="col">Modificar</th>

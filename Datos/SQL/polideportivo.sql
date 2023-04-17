@@ -123,25 +123,25 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre_apellido`, `dni`, `codigo`, `fecha_nacimiento`, `password`, `id_rol`) VALUES
-(2, 'iñigo rosado', '22222222a', '1001', '2023-03-12', 'Kaixooooooooooo', 1),
-(3, 'oier ugalde', '33333333a', '1002', '2023-06-23', 'a', 0),
-(4, 'beñat bilbao', '44444444a', '1003', NULL, 'null', 0),
-(5, 'markel rajado', '55555555a', '1004', NULL, 'null', 0),
-(6, 'aitor gonzalez', '66666666a', '1005', NULL, 'null', 0),
-(7, 'paul horcajada', '77777777a', '1006', NULL, 'null', 0),
-(8, 'zigor etxebarria', '88888888a', '1007', NULL, 'null', 0),
-(9, 'aitzol estebez', '99999999a', '1008', NULL, 'null', 0),
-(10, 'xabier oyarzun', '10101010a', '1009', NULL, 'null', 0),
-(11, 'andoni garcia', '12121212a', '1010', NULL, 'null', 0),
-(12, 'oier garcia', '13131313a', '1011', NULL, 'null', 0),
-(13, 'aritz santana', '14141414a', '1012', NULL, 'null', 0),
-(14, 'anartz vargas', '15151515a', '1013', NULL, 'null', 0),
-(15, 'beñat bikuña', '16161616a', '1014', NULL, 'null', 0),
-(16, 'Aitor Goikoetxea', '45781245J', '1015', NULL, 'null', 0),
-(30, 'Aitor Etxaide', '4578455T', '1016', '2023-03-23', 'Contraseña', 0),
-(34, 'sadasd', 'asdasdasd', '1018', '2023-03-18', 'aaaaa', 1),
-(36, 'root', '12345678G', '1019', '2023-03-28', 'toor12345', 2),
-(37, 'PruebaUsuAdmin', '12323423g', '1020', '2023-03-03', 'a', 1);
+(2, 'iñigo rosado', '22222222a', '1001', '2023-03-12', '95ead2f308bf73c6696fc3cfa6084ccf803a68b7', 0),
+(3, 'oier ugalde', '33333333a', '1002', '2023-06-23', '86f7e437faa5a7fce15d1ddcb9eaeaea377667b8', 1),
+(4, 'beñat bilbao', '44444444a', '1003', NULL, '2be88ca4242c76e8253ac62474851065032d6833', 0),
+(5, 'markel rajado', '55555555a', '1004', NULL, '2be88ca4242c76e8253ac62474851065032d6833', 0),
+(6, 'aitor gonzalez', '66666666a', '1005', NULL, '2be88ca4242c76e8253ac62474851065032d6833', 0),
+(7, 'paul horcajada', '77777777a', '1006', NULL, '2be88ca4242c76e8253ac62474851065032d6833', 0),
+(8, 'zigor etxebarria', '88888888a', '1007', NULL, '2be88ca4242c76e8253ac62474851065032d6833', 0),
+(9, 'aitzol estebez', '99999999a', '1008', NULL, '2be88ca4242c76e8253ac62474851065032d6833', 0),
+(10, 'xabier oyarzun', '10101010a', '1009', NULL, '2be88ca4242c76e8253ac62474851065032d6833', 0),
+(11, 'andoni garcia', '12121212a', '1010', NULL, '2be88ca4242c76e8253ac62474851065032d6833', 0),
+(12, 'oier garcia', '13131313a', '1011', NULL, '2be88ca4242c76e8253ac62474851065032d6833', 0),
+(13, 'aritz santana', '14141414a', '1012', NULL, '2be88ca4242c76e8253ac62474851065032d6833', 0),
+(14, 'anartz vargas', '15151515a', '1013', NULL, '2be88ca4242c76e8253ac62474851065032d6833', 0),
+(15, 'beñat bikuña', '16161616a', '1014', NULL, '2be88ca4242c76e8253ac62474851065032d6833', 0),
+(16, 'Aitor Goikoetxea', '45781245J', '1015', NULL, '2be88ca4242c76e8253ac62474851065032d6833', 0),
+(30, 'Aitor Etxaide', '4578455T', '1016', '2023-03-23', '5a6d1c612954979ea99ee33dbb2d231b00f6ac0a', 0),
+(34, 'sadasd', 'asdasdasd', '1018', '2023-03-18', 'df51e37c269aa94d38f93e537bf6e2020b21406c', 1),
+(36, 'root', '12345678G', '1019', '2023-03-28', 'dd137dbcf7d2bec9adf189a3fa2b457c181380e9', 2),
+(37, 'PruebaUsuAdmin', '12323423g', '1020', '2023-03-03', 'a0f1490a20d0211c997b44bc357e1972deab8ae3', 2);
 
 --
 -- Índices para tablas volcadas
