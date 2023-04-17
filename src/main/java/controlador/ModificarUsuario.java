@@ -56,7 +56,6 @@ public class ModificarUsuario extends HttpServlet {
 		try {
 			roles = mrol.getRoles();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

@@ -51,7 +51,6 @@ public class VerUsuarios extends HttpServlet {
 		try {
 			listaroles = mrol.getRoles();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
