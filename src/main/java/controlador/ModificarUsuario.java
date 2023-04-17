@@ -12,6 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.codec.digest.DigestUtils;
 
 import modelo.ModeloRol;
 import modelo.ModeloUsuario;
@@ -36,6 +39,12 @@ public class ModificarUsuario extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		Usuario usuarioLogeado = (Usuario) session.getAttribute("usuarioLogueado");
+		if(usuarioLogeado == null) {
+			response.sendRedirect("Login");
+		}else {
+		
 		int id = Integer.parseInt(request.getParameter("id"));
 		
 		Usuario usuario = new Usuario();
@@ -66,6 +75,7 @@ public class ModificarUsuario extends HttpServlet {
 		request.setAttribute("fecha", fecha);
 		request.setAttribute("password", password);
 		request.getRequestDispatcher("modificarUsuario.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -75,7 +85,8 @@ public class ModificarUsuario extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String nombre = request.getParameter("nombre");
 		String fechaSinFormato = request.getParameter("fecha_nacimiento");
-		String password = request.getParameter("password");
+		String passSinEncriptar = request.getParameter("password");
+		String password = DigestUtils.sha1Hex(passSinEncriptar);
 		int id_rol = Integer.parseInt(request.getParameter("roles"));
 		Date fecha = null;
 		try {
