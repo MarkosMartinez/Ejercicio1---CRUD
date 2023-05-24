@@ -57,7 +57,6 @@ public class Login extends HttpServlet {
 		try {
 			user = musuario.comprobarLogin(dni, pass);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(user.getDni() == "-1") {
